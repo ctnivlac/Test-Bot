@@ -1,0 +1,87 @@
+import os
+from dotenv.main import load_dotenv
+
+load_dotenv()
+
+PREFIX = "!"
+BOT_NAME = "Bulldog Rocketry Discord Bot"
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+GUILD_ID = int(os.getenv("GUILD_ID", ""))
+
+RULES_CHANNEL_ID = int(os.getenv("RULES_CHANNEL_ID", ""))
+NEWBIES_CHANNEL_ID = int(os.getenv("NEWBIES_CHANNEL_ID", ""))
+SELF_ASSIGN_ROLES_CHANNEL_ID = int(os.getenv("SELF_ASSIGN_ROLES_CHANNEL_ID", ""))
+LEADERSHIP_ROLE_CHANNEL_ID = int(os.getenv("LEADERSHIP_ROLE_CHANNEL_ID", ""))
+
+IT_ROLE_ID = int(os.getenv("IT_ROLE_ID", ""))
+MEMBER_ROLE_ID = int(os.getenv("MEMBER_ROLE_ID", ""))
+LEADERSHIP_ROLE_ID = int(os.getenv("LEADERSHIP_ROLE_ID", ""))
+
+ENGINEER_ROLE_ID = int(os.getenv("ENGINEER_ROLE_ID", ""))
+ENGINEER_EMOJI = "🚀"
+NOSE_CONE_ROLE_ID = int(os.getenv("NOSE_CONE_ROLE_ID", ""))
+NOSE_CONE_EMOJI = "🚀"
+AIRFRAME_ROLE_ID = int(os.getenv("AIRFRAME_ROLE_ID", ""))
+AIRFRAME_EMOJI = "🚀"
+MOTOR_ROLE_ID = int(os.getenv("MOTOR_ROLE_ID", ""))
+MOTOR_EMOJI = "🚀"
+RECOVERY_ROLE_ID = int(os.getenv("RECOVERY_ROLE_ID", ""))
+RECOVERY_EMOJI = "🚀"
+SOLIDWORKS_ROLE_ID = int(os.getenv("SOLIDWORKS_ROLE_ID", ""))
+SOLIDWORKS_EMOJI = "🚀"
+AVIONICS_ROLE_ID = int(os.getenv("AVIONICS_ROLE_ID", ""))
+AVIONICS_EMOJI = "🚀"
+
+OPERATIONS_ROLE_ID = int(os.getenv("OPERATIONS_ROLE_ID", ""))
+OPERATIONS_EMOJI = "🌴"
+COMPLIANCE_ROLE_ID = int(os.getenv("COMPLIANCE_ROLE_ID", ""))
+COMPLIANCE_EMOJI = "🌴"
+PEOPLE_ROLE_ID = int(os.getenv("PEOPLE_ROLE_ID", ""))
+PEOPLE_EMOJI = "🌴"
+LOGISTICS_ROLE_ID = int(os.getenv("LOGISTICS_ROLE_ID", ""))
+LOGISTICS_EMOJI = "🌴"
+DOCUMENTATION_ROLE_ID = int(os.getenv("DOCUMENTATION_ROLE_ID", ""))
+DOCUMENTATION_EMOJI = "🌴"
+
+MARKETING_ROLE_ID = int(os.getenv("MARKETING_ROLE_ID", ""))
+MARKETING_EMOJI = "🎨"
+OUTREACH_ROLE_ID = int(os.getenv("OUTREACH_ROLE_ID", ""))
+OUTREACH_EMOJI = "🎨"
+DESIGN_ART_ROLE_ID = int(os.getenv("DESIGN_ART_ROLE_ID", ""))
+DESIGN_ART_EMOJI = "🎨"
+WEB_DESIGN_ROLE_ID = int(os.getenv("WEB_DESIGN_ROLE_ID", ""))
+WEB_DESIGN_EMOJI = "🎨"
+
+FINANCE_ROLE_ID = int(os.getenv("FINANCE_ROLE_ID", ""))
+FINANCE_EMOJI = "💰"
+FUNDRAISING_ROLE_ID = int(os.getenv("FUNDRAISING_ROLE_ID", ""))
+FUNDRAISING_EMOJI = "💰"
+
+PROJECTS_ROLE_ID = int(os.getenv("PROJECTS_ROLE_ID", ""))
+PROJECTS_EMOJI = "📡"
+HYBRID_ROLE_ID = int(os.getenv("HYBRID_ROLE_ID", ""))
+HYBRID_EMOJI = "🎇"
+PAYLOAD_ROLE_ID = int(os.getenv("PAYLOAD_ROLE_ID", ""))
+PAYLOAD_EMOJI = "🛰️"
+FARM_DEVELOPMENT_ROLE_ID = int(os.getenv("FARM_DEVELOPMENT_ROLE_ID", ""))
+FARM_DEVELOPMENT_EMOJI = "🏗️"
+BIOSYSTEMS_ROLE_ID = int(os.getenv("BIOSYSTEMS_ROLE_ID", ""))
+BIOSYSTEMS_EMOJI = "🧫"
+SRAD_SIMULATION_ROLE_ID = int(os.getenv("SRAD_SIMULATION_ROLE_ID", ""))
+SRAD_SIMULATION_EMOJI = "🕹️"
+EXPERIMENTAL_ROCKETS_ROLE_ID = int(os.getenv("EXPERIMENTAL_ROCKETS_ROLE_ID", ""))
+EXPERIMENTAL_ROCKETS_EMOJI = "🌖"
+GLEE_ROLE_ID = int(os.getenv("GLEE_ROLE_ID", ""))
+GLEE_EMOJI = "🧑‍🚀"
+
+TECHNOLOGY_ROLE_ID = int(os.getenv("TECHNOLOGY_ROLE_ID", ""))
+TEHCNOLOGY_EMOJI = "🖥️"
+INTERNAL_TOOLS_ROLE_ID = int(os.getenv("INTERNAL_TOOLS_ROLE_ID", ""))
+INTERNAL_TOOLS_EMOJI = "⚒️"
+WEB_DEVELOPMENT_ROLE_ID = int(os.getenv("WEB_DEVELOPMENT_ROLE_ID", ""))
+WEB_DEVELOPMENT_EMOJI = "🪄"
+SYSTEM_ADMINISTRATION_ROLE_ID = int(os.getenv("SYSTEM_ADMINISTRATION_ROLE_ID", ""))
+SYSTEM_ADMINISTRATION_EMOJI = "🕶️"
+KNOWLEDGE_MANAGMENT_ROLE_ID = int(os.getenv("KNOWLEDGE_MANAGMENT_ROLE_ID", ""))
+KNOWLEDGE_MANAGMENT_EMOJI = "🧠"
