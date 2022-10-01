@@ -1,0 +1,101 @@
+import nextcord
+from config import *
+
+# Custom Id - Creates the custom id for buttons
+#
+def custom_id(view: str, id: int) -> str:
+    return f"{BOT_NAME}:{view}:{id}"
+
+
+# Handle Click - Remove role clicked if the user already has that role, 
+#                or creates a role request ticket for the role
+#
+async def handle_click(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+
+    role = interaction.guild.get_role(int(button.custom_id.split(":")[-1])) # grab role from custom id
+
+    assert isinstance(role, nextcord.Role) # checks that role exist
+
+    if role in interaction.user.roles:
+
+        await interaction.user.remove_roles(role)
+        await interaction.response.send_message(f"Your {button.label} role has been removed", ephemeral=True)
+        print(f"{interaction.user.nick} has removed their {button.label} role")
+
+    else:
+        msg = await interaction.response.send_message("Creating request...", ephemeral=True)
+        
+        overwrites = { # Channel Permissions
+            interaction.guild.default_role: nextcord.PermissionOverwrite(read_messages=False),
+            interaction.guild.get_role(LEADERSHIP_ROLE_ID): nextcord.PermissionOverwrite(read_messages=True)
+        }
+
+        channel = await interaction.guild.create_text_channel(
+            f"{interaction.user.display_name}-{button.label}-role-request-ticket-{interaction.user.id}-{role.id}",
+            overwrites=overwrites
+        )
+        
+        await msg.edit(f"The Leadership Team has received your request, please be patient!")
+
+        IT_role = interaction.guild.get_role(IT_ROLE_ID)
+        
+        embed = nextcord.Embed(
+            title = f"{interaction.user.display_name} {button.label} role request",
+            description = f"{IT_role.mention}: {interaction.user.display_name} has requested to join {role} commmittee"
+        )
+
+        await channel.send(embed=embed, view=TicketSettings())
+
+
+# Ticket Settings - Role Request Ticket Buttons
+#                       Accept - adds the requesting user to the requested role
+#                       Deny - deny's the requesting user from the requested role
+#
+class TicketSettings(nextcord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
+    @nextcord.ui.button(
+        label="Accept", 
+        emoji= "✅",
+        style=nextcord.ButtonStyle.green,
+        custom_id="TicketReactionClose:green"
+    )
+    async def accept_ticket(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+
+        await interaction.response.send_message("Ticket being closed...", ephemeral=True)
+
+        channel_name = interaction.channel.name
+
+        user_requesting = interaction.guild.get_member(int(channel_name.split("-")[-2])) # user who created request
+        role_requested = interaction.guild.get_role(int(channel_name.split("-")[-1]))    # role user requested
+        channel = interaction.guild.get_channel(LEADERSHIP_ROLE_CHANNEL_ID)              # leadership chat   
+
+        await user_requesting.add_roles(role_requested)                                                                             #add requested role to user
+
+        print(f"{interaction.user.display_name} has accepted {user_requesting.display_name} into the {role_requested.name} committee")              #Terminal log        
+        await channel.send(f"{interaction.user.display_name} has accepted {user_requesting.display_name} into the {role_requested.name} committee") #Leadership chat log
+        await user_requesting.send(f"{interaction.user.display_name} has accepted you into the {role_requested.name} committee")            #Requested User messaged
+
+        await interaction.channel.delete() #finish deleteing ticket
+
+    @nextcord.ui.button(
+        label="Deny", 
+        emoji= "❌",
+        style=nextcord.ButtonStyle.red,
+        custom_id="TicketReactionClose:red"
+    )
+    async def deny_ticket(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
+        await interaction.response.send_message("Ticket being closed...", ephemeral=True)
+        
+        channel_name = interaction.channel.name
+
+        user_requesting = interaction.guild.get_member(int(channel_name.split("-")[-2])) # user who created request
+        role_requested = interaction.guild.get_role(int(channel_name.split("-")[-1]))    # role user requested
+        channel = interaction.guild.get_channel(LEADERSHIP_ROLE_CHANNEL_ID)              # leadership chat
+
+        print(f"{interaction.user.display_name} has denied {user_requesting.display_name} into the {role_requested.name} committee")             # Terminal Log
+        await channel.send(f"{interaction.user.display_name} has denied {user_requesting.display_name} into the {role_requested.name} committee")# Leadership chat log
+        await user_requesting.send(f"{interaction.user.display_name} has denied you into the {role_requested.name} committee")           # Requested user messaged
+
+        await interaction.channel.delete() # Ticket Finished and ticket channel deleted

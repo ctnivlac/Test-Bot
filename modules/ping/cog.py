@@ -11,6 +11,6 @@ class Ping(commands.Cog, name="Ping pong"):
     @commands.command()
     async def ping(self, ctx: commands.Context):
         await ctx.send("pong")
-
+ 
 def setup(bot: commands.Bot):
     bot.add_cog(Ping(bot))   
