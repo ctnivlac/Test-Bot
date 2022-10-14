@@ -5,7 +5,7 @@ load_dotenv()
 
 PREFIX = "!"
 BOT_NAME = "Bulldog Rocketry Discord Bot"
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = os.getenv("TOKEN")
 
 GUILD_ID = int(os.getenv("GUILD_ID", ""))
 
@@ -85,3 +85,5 @@ SYSTEM_ADMINISTRATION_ROLE_ID = int(os.getenv("SYSTEM_ADMINISTRATION_ROLE_ID", "
 SYSTEM_ADMINISTRATION_EMOJI = "🕶️"
 KNOWLEDGE_MANAGMENT_ROLE_ID = int(os.getenv("KNOWLEDGE_MANAGMENT_ROLE_ID", ""))
 KNOWLEDGE_MANAGMENT_EMOJI = "🧠"
+
+guild_ids = [1022592942495506564]

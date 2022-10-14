@@ -21,7 +21,7 @@ def main():
         if os.path.exists(os.path.join("modules", folder, "cog.py")):
             bot.load_extension(f"modules.{folder}.cog")
 
-    bot.run("MTAwNTU3MTI1NDM4MTcxMTM2MA.GtKY8F.JTg4cABk6tO6TRz9x2fCp8C434ER6N144OAdos")
+    bot.run(TOKEN)
 
 if __name__ == '__main__':
     main()
